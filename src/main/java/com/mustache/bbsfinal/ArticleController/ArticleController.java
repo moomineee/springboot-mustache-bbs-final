@@ -25,7 +25,7 @@ public class ArticleController {
         this.articleRepository = articleRepository;
     }
 
-    @GetMapping("/new")
+    @GetMapping("")
     public String listPage(Model model) {
         List<Article> articles = articleRepository.findAll();
         model.addAttribute("articles", articles);
