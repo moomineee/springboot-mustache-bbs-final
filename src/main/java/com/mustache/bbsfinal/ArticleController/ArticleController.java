@@ -48,6 +48,20 @@ public class ArticleController {
         }
     }
 
+    @GetMapping("/{id}/edit")
+    public String edit(@PathVariable Long id, Model model) {
+
+        Optional<Article> optionalArticle = articleRepository.findById(id);
+
+        if(!optionalArticle.isEmpty()) {
+            model.addAttribute("article", optionalArticle.get());
+            return "edit";
+        } else {
+            model.addAttribute("message", String.format("%d가 없습니다.", id));
+            return "error";
+        }
+    }
+
     @PostMapping("")
     public String createArticle(ArticleDto articleDto) {
 
