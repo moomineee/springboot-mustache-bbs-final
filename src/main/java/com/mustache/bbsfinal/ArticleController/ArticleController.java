@@ -71,7 +71,7 @@ public class ArticleController {
         log.info("title:{} content:{}", articleDto.getTitle(), articleDto.getContent());
         Article article = articleRepository.save(articleDto.toEntitiy());
         model.addAttribute("article", article);
-        return "redirect:/articles/show";
+        return String.format("redirect:/articles/%d", article.getId());
     }
 
 }
