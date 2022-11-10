@@ -1,5 +1,6 @@
 package com.mustache.bbsfinal.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +10,7 @@ import javax.persistence.*;
 @Getter
 @Table(name = "article")
 @NoArgsConstructor
+@AllArgsConstructor
 public class Article {
 
     @Id
