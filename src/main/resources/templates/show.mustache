@@ -1,3 +1,21 @@
-{{#article}}
-    {{id}} {{title}} {{content}}
-{{/article}}
+{{>layouts/header}}
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Content</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#article}}
+        <tr>
+            <th scope="row">{{id}}</th>
+            <td>{{title}}</td>
+            <td>{{content}}</td>
+        </tr>
+    {{/article}}
+    </tbody>
+</table>
+{{>layouts/footer}}
