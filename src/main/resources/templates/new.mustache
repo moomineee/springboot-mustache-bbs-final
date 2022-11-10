@@ -1,7 +1,15 @@
 {{>layouts/header}}
-    <form action="/articles/" method="post">
-        <input type="text" name="title" />
-        <input type="text" name="content" />
-        <input type="submit" />
-    </form>
+<form action="/articles/" class="container" method="post">
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">제목</label>
+        <input type="text" name="title" class="form-control" id="exampleFormControlInput1"
+               placeholder="제목을 입력하세요.">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">내용</label>
+        <textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="3"
+                  placeholder="내용을 입력하세요."></textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>
 {{>layouts/footer}}
