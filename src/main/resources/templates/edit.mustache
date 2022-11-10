@@ -1,0 +1,9 @@
+this page is Edit Page.
+{{#article}}
+<form action="/articles/{{id}}" method="put">
+     <input type="text" name="title" value="{{title}}" />
+     <textarea rows="3" name="content">{{content}}</textarea>
+</form>
+<a href="/articles/{{id}}"> 이전 페이지로</a>
+<a href="/articles/{{id}}"> 게시판으로</a>
+{{/article}}
