@@ -59,13 +59,18 @@ public class ArticleController {
         }
     }
 
+    @GetMapping("/{id}/delete")
+    public String edit(@PathVariable Long id) {
+        articleRepository.deleteById(id);
+        return "redirect:/articles";
+    }
+
     @PostMapping("")
     public String createArticle(ArticleDto articleDto) {
 
         Article savedArticle = articleRepository.save(articleDto.toEntitiy());
         return String.format("redirect:/articles/%d", savedArticle.getId());
     }
-
     @PostMapping("/{id}/update")
     public String update(@PathVariable Long id, ArticleDto articleDto, Model model) {
         log.info("title:{} content:{}", articleDto.getTitle(), articleDto.getContent());
@@ -73,5 +78,4 @@ public class ArticleController {
         model.addAttribute("article", article);
         return String.format("redirect:/articles/%d", article.getId());
     }
-
 }
