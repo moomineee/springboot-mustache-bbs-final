@@ -60,9 +60,11 @@ public class ArticleController {
     }
 
     @GetMapping("/{id}/delete")
-    public String edit(@PathVariable Long id) {
+    public String delete(@PathVariable Long id, Model model) {
         articleRepository.deleteById(id);
-        return "redirect:/articles";
+        model.addAttribute("message", String.format("%d번 게시물이 삭제되었습니다.", id));
+        model.addAttribute("articles", articleRepository.findAll());
+        return "list";
     }
 
     @PostMapping("")
