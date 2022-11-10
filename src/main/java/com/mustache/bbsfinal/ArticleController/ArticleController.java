@@ -44,7 +44,7 @@ public class ArticleController {
     public String createArticle(ArticleDto articleDto) {
 
         Article savedArticle = articleRepository.save(articleDto.toEntitiy());
-        return String.format("id : %d", savedArticle.getId());
+        return String.format("redirect:/articles/%d", savedArticle.getId());
 
     }
 }
