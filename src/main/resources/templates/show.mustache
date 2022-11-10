@@ -1,23 +1,24 @@
 {{>layouts/header}}
 
 <table class="table table-striped">
-    <thead>
+        <thead>
     <tr>
         <th scope="col">Id</th>
         <th scope="col">Title</th>
         <th scope="col">Content</th>
     </tr>
     </thead>
-    <tbody>
-    {{#article}}
-        <tr>
-            <th scope="row">{{id}}</th>
-            <td>{{title}}</td>
-            <td>{{content}}</td>
-        </tr>
-    {{/article}}
-    </tbody>
+<tbody>
+{{#article}}
+    <tr>
+        <th scope="row">{{id}}</th>
+        <td>{{title}}</td>
+        <td>{{content}}</td>
+    </tr>
+</tbody>
+{{/article}}
 </table>
+<a href="/articles/{{id}}/edit" class="btn btn-warning">수정</a>
 <a href="/articles/">게시판으로</a>
 <a href="/articles/new">새 글 작성</a>
 {{>layouts/footer}}
