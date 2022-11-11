@@ -1,4 +1,4 @@
-package com.mustache.bbsfinal.domain.dto;
+package com.mustache.bbsfinal.domain;
 
 import com.mustache.bbsfinal.domain.Article;
 import lombok.AllArgsConstructor;
