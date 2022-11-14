@@ -17,9 +17,6 @@ public class Hospital {
     @Column(name = "road_name_address")
     private String roadNameAddress;
 
-    @Column
+    @Column(name ="hospitalName")
     private String hospitalName;
-    private Integer patientRoomCount;
-    private Integer totalNumberOfBeds;
-    private Float totalAreaSize;
 }
