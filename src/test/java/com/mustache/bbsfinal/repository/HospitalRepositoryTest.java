@@ -27,23 +27,40 @@ class HospitalRepositoryTest {
     }
 
     @Test
-    @DisplayName("송파구가 포함된 병원 출력")
+    @DisplayName("송파구가 포함된 병원 리스트 출력")
     void containing() {
         List<Hospital> hospitals = hospitalRepository.findByRoadNameAddressContaining("송파구");
         printHospitalNameAndAddress(hospitals);
     }
 
     @Test
+    @DisplayName("경희로 시작하는 병원 리스트 출력")
     void startswith() {
         List<Hospital> hospitals = hospitalRepository.findByHospitalNameStartsWith("경희");
         printHospitalNameAndAddress(hospitals);
     }
 
     @Test
+    @DisplayName("'병원'으로 끝나는 리스트 출력")
     void endsWith() {
         List<Hospital> hospitals = hospitalRepository.findByHospitalNameEndsWith("병원"); // 의원, 병원 ...
         printHospitalNameAndAddress(hospitals);
     }
+
+    @Test
+    @DisplayName("병상수가 10개 이상 20개 미만인 병원 리스트 출력")
+    void findByPatientRoomCountAndPatientRoomCount() {
+        List<Hospital> hospitals = hospitalRepository.findByPatientRoomCountGreaterThanAndPatientRoomCountLessThan(10, 20);
+        printHospitalNameAndAddress(hospitals);
+    }
+
+    @Test
+    @DisplayName("병상수가 10개 이상 20개 미만인 병원 리스트 출력(Between")
+    void findPatientRommCountBetween() {
+        List<Hospital> hospitals = hospitalRepository.findByPatientRoomCountBetween(10, 20);
+    }
+
+
 
     @Test
     @DisplayName("BusinessTypeName이 보건소 보건지소 보건진료소인 데이터가 잘 나오는지")
