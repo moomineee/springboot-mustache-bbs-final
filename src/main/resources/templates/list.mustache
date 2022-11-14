@@ -1,9 +1,4 @@
 {{>layouts/header}}
-{{#message}}
-    <div class="alert alert-primary" role="alert">
-        {{message}}
-    </div>
-{{/message}}
 <table class="table table-striped">
     <thead>
     <tr>
@@ -12,14 +7,16 @@
         <th scope="col">Content</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody class="table-group-divider">
     {{#articles}}
         <tr>
-            <th scope="row">{{id}}</th>
+            <th>{{id}}</th>
             <td><a href="/articles/{{id}}">{{title}}</a></td>
             <td>{{content}}</td>
         </tr>
     {{/articles}}
     </tbody>
 </table>
+<a href="/articles/new">new article</a>
+<a href="/articles">articles List</a>
 {{>layouts/footer}}

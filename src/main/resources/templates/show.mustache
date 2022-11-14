@@ -1,25 +1,16 @@
 {{>layouts/header}}
-
-<table class="table table-striped">
-        <thead>
-    <tr>
-        <th scope="col">Id</th>
-        <th scope="col">Title</th>
-        <th scope="col">Content</th>
-    </tr>
-    </thead>
-<tbody>
 {{#article}}
-    <tr>
-        <th scope="row">{{id}}</th>
-        <td>{{title}}</td>
-        <td>{{content}}</td>
-    </tr>
-</tbody>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{id}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{title}}</h6>
+            <p class="card-text">{{content}}</p>
+            <a href="/articles/new" class="card-link">new article</a>
+            <a href="/articles" class="card-link">articles List</a>
+        </div>
+    </div>
+    <a href="/articles/{{id}}/edit" class="btn btn-primary">Edit</a>
+    <a href="/articles/{{id}}/delete" class="btn btn-danger">Delete</a>
 {{/article}}
-</table>
-<a href="/articles/{{id}}/edit" class="btn btn-warning">수정</a>
-<a href="/articles/{{id}}/delete" class="btn btn-danger">삭제</a>
-<a href="/articles/">게시판으로</a>
-<a href="/articles/new">새 글 작성</a>
+{{^sms_agree}}N{{/sms_agree}}
 {{>layouts/footer}}
