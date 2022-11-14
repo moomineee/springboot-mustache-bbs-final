@@ -56,11 +56,15 @@ class HospitalRepositoryTest {
 
     @Test
     @DisplayName("병상수가 10개 이상 20개 미만인 병원 리스트 출력(Between")
-    void findPatientRommCountBetween() {
+    void findPatientRoomCountBetween() {
         List<Hospital> hospitals = hospitalRepository.findByPatientRoomCountBetween(10, 20);
     }
 
-
+    @Test
+    @DisplayName("병상수가 10개 이상 20개 미만인 병원 내림차순 정렬로 리스트 출력")  // between & orderBy
+    void findByPatientRoomCountBetweenOrderByPatientRoomCountDesc() {
+        List<Hospital> hospitals = hospitalRepository.findByPatientRoomCountBetweenOrderByPatientRoomCountDesc(10, 20);
+    }
 
     @Test
     @DisplayName("BusinessTypeName이 보건소 보건지소 보건진료소인 데이터가 잘 나오는지")
