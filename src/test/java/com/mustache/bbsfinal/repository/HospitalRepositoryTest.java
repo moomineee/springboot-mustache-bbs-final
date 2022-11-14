@@ -18,11 +18,31 @@ class HospitalRepositoryTest {
     HospitalRepository hospitalRepository;
 
     @Test
-    void findById(){
-        Optional<Hospital> hospital = hospitalRepository.findById(1);
-        Hospital  hp = hospital.get();
-        System.out.println(hp.getId());
-        assertEquals(1,hp.getId());
+    void printHospitalNameAndAddress(List<Hospital> hospitals) {
+        for (var hospital : hospitals) {
+            System.out.printf("%s | %s %f\n", hospital.getHospitalName(), hospital.getRoadNameAddress(),
+                    hospital.getTotalAreaSize());
+        }
+        System.out.println(hospitals.size());
+    }
+
+    @Test
+    @DisplayName("송파구가 포함된 병원 출력")
+    void containing() {
+        List<Hospital> hospitals = hospitalRepository.findByRoadNameAddressContaining("송파구");
+        printHospitalNameAndAddress(hospitals);
+    }
+
+    @Test
+    void startswith() {
+        List<Hospital> hospitals = hospitalRepository.findByHospitalNameStartsWith("경희");
+        printHospitalNameAndAddress(hospitals);
+    }
+
+    @Test
+    void endsWith() {
+        List<Hospital> hospitals = hospitalRepository.findByHospitalNameEndsWith("병원"); // 의원, 병원 ...
+        printHospitalNameAndAddress(hospitals);
     }
 
     @Test
@@ -33,8 +53,7 @@ class HospitalRepositoryTest {
         inClues.add("보건지소");
         inClues.add("보건진료소");
         List<Hospital> hospitals = hospitalRepository.findByBusinessTypeNameIn(inClues);
-        for (var hospital :
-                hospitals) {
+        for (var hospital : hospitals) {
             System.out.println(hospital.getHospitalName());
         }
     }
