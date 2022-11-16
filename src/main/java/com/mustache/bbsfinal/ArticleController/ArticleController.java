@@ -42,14 +42,13 @@ public class ArticleController {
         Optional<Article> optArticle = articleRepository.findById(id);
         if (!optArticle.isEmpty()) {
             model.addAttribute("article", optArticle.get());
-            //model.addAttribute("comments", optArticle.get().getComments());
             return "articles/show";
         }
         return "articles/error";
     }
     @GetMapping("/list")
     public String findAll(Model model){
-        List<Article> list=articleRepository.findAll();
+        List<Article> list = articleRepository.findAll();
         model.addAttribute("articles", list);
         return "articles/list";
     }
