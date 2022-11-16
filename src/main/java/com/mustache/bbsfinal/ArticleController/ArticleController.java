@@ -33,7 +33,7 @@ public class ArticleController {
     @PostMapping("")
     public String articles(ArticleDto articleDto){
         log.info(articleDto.getTitle());
-        Article savedArticle = articleRepository.save(articleDto.toEntitiy());
+        Article savedArticle = articleRepository.save(articleDto.toEntity());
         return "redirect:/articles/"+savedArticle.getId();
     }
 
@@ -64,7 +64,7 @@ public class ArticleController {
     @PostMapping("/{id}/update")
     public String updatePost(@PathVariable Long id, ArticleDto articleDto){
         log.info("title : {} content : {}", articleDto.getTitle(), articleDto.getContent());
-        Article article = articleRepository.save(articleDto.toEntitiy());
+        Article article = articleRepository.save(articleDto.toEntity());
         return "redirect:/articles/" + article.getId();
     }
     @GetMapping("/{id}/delete")

@@ -25,7 +25,7 @@ public class ArticleRestController {
     }
 
     @PostMapping("")
-    public ResponseEntity<ArticleAddResponse> addArticle(ArticleAddRequest dto){
+    public ResponseEntity<ArticleAddResponse> addArticle(@RequestBody ArticleAddRequest dto){
         ArticleAddResponse response = articleService.add(dto);
         return ResponseEntity.ok().body(response);
     }

@@ -1,5 +1,6 @@
 package com.mustache.bbsfinal.domain;
 
+import com.mustache.bbsfinal.domain.dto.ArticleAddResponse;
 import com.mustache.bbsfinal.domain.dto.ArticleDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,8 +13,8 @@ import javax.persistence.*;
 @Builder
 @Getter
 @Table(name = "article")
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Article {
 
     @Id
@@ -28,6 +29,6 @@ public class Article {
     }
 
     public static ArticleDto of(Article article){
-        return new ArticleDto(article.getId(), article.getTitle(), article.getContent());
+        return new ArticleAddResponse(article.getId(), article.getTitle(), article.getContent());
     }
 }

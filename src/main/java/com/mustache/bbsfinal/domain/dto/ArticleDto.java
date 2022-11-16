@@ -5,15 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
+@AllArgsConstructor
 public class ArticleDto {
     private Long id;
     private String title;
     private String content;
 
-    public Article toEntitiy() {
-       return new Article(this.id, this.title, this.content);
+    public Article toEntity(){
+        return new Article(id, title, content);
     }
 }

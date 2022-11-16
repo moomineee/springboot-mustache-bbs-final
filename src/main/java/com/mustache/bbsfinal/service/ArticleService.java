@@ -20,13 +20,13 @@ public class ArticleService {
 
     public ArticleDto getArticleById(Long id){
         Optional<Article> optArticle=articleRepository.findById(id);
-        ArticleDto article=Article.of(optArticle.get());
+        ArticleDto article = Article.of(optArticle.get());
 
         return article;
     }
     public ArticleAddResponse add(ArticleAddRequest dto){
-        Article article=dto.toEntity();
-        Article savedArticle=articleRepository.save(article);
+        Article article = dto.toEntity(); // dto 그대로 저장할 수 없으므로 Entity로 변환
+        Article savedArticle = articleRepository.save(article);
         return new ArticleAddResponse(savedArticle.getId(), savedArticle.getTitle(), savedArticle.getContent());
     }
 }
