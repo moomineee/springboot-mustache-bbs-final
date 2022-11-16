@@ -37,8 +37,9 @@
         <li class="page-item"><a class="page-link" href="?keyword={{keyword}}&page={{next}}">Next</a></li>
     {{/keyword}}
     {{^keyword}}
+        <li class="page-item"><a class="page-link" href="?page={{previous}}">Previous</li>
         <li class="page-item"><a class="page-link" href="?page={{previous}}">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="?page={{next}}">Next</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{next}}">Next</li>
     {{/keyword}}
 </ul>
 {{>layouts/footer}}

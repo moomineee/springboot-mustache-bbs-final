@@ -13,7 +13,7 @@ public class HospitalRestController {
     public HospitalRestController(HospitalService hospitalService){
         this.hospitalService=hospitalService;
     }
-    @GetMapping(value="/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<HospitalResponse> get(@PathVariable Integer id){
         HospitalResponse hospitalResponse = hospitalService.getHospital(id); // DTO
         return ResponseEntity.ok().body(hospitalResponse); // Return은 DTO로
