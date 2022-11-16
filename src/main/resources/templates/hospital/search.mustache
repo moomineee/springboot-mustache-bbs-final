@@ -1,0 +1,44 @@
+{{>layouts/header}}
+<form class="container" action="/hospitals" method="get">
+    <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">지역명</label>
+        <div class="col-sm-10">
+            {{#keyword}}
+                <input type="text" class="form-control" name="keyword" value="{{keyword}}"/>
+            {{/keyword}}
+            {{^keyword}}
+                <input type="text" class="form-control" name="keyword"/>
+            {{/keyword}}
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">조회</button>
+</form>
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Content</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#hospitals}}
+        <tr>
+            <th scope="row">{{id}}</th>
+            <td><a href="/hospitals/{{id}}">{{hospitalName}}</a></td>
+            <td>{{roadNameAddress}}</td>
+        </tr>
+    {{/hospitals}}
+    </tbody>
+</table>
+<ul class="pagination justify-content-center">
+    {{#keyword}}
+        <li class="page-item"><a class="page-link" href="?keyword={{keyword}}&page={{previous}}">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="?keyword={{keyword}}&page={{next}}">Next</a></li>
+    {{/keyword}}
+    {{^keyword}}
+        <li class="page-item"><a class="page-link" href="?page={{previous}}">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{next}}">Next</a></li>
+    {{/keyword}}
+</ul>
+{{>layouts/footer}}

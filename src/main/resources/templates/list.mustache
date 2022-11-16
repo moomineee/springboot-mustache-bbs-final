@@ -1,22 +1,21 @@
+
 {{>layouts/header}}
-<div class="contain-sm mt-3">
-    <table class="table">
-        <thead>
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Content</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#articles}}
         <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Title</th>
-            <th scope="col">Content</th>
+            <th scope="row">{{id}}</th>
+            <td><a href="/articles/{{id}}">{{title}}</a></td>
+            <td>{{content}}</td>
         </tr>
-        </thead>
-        <tbody>
-        {{#articles}}
-            <tr>
-                <th scope="row">{{id}}</th>
-                <td><a href="/articles/{{id}}">{{title}}</td>
-                <td>{{content}}</td>
-            </tr>
-        {{/articles}}
-    </table>
-</div>
-<a href="/articles/new" class="btn btn-secondary">New</a>
+    {{/articles}}
+    </tbody>
+</table>
 {{>layouts/footer}}

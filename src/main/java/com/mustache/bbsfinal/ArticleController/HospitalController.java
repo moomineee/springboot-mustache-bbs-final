@@ -36,7 +36,7 @@ public class HospitalController {
     }
     @GetMapping("/{id}")
     public String selectHospital(@PathVariable Integer id, Model model){
-        Optional<Hospital> hospital=hospitalRepository.findById(id);
+        Optional<Hospital> hospital = hospitalRepository.findById(id);
         if(!hospital.isEmpty()){
             model.addAttribute("hospital", hospital.get());
             return "hospitals/show";
