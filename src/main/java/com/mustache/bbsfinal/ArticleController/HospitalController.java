@@ -5,15 +5,14 @@ import com.mustache.bbsfinal.repository.HospitalRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/hospitals")
@@ -26,39 +25,22 @@ public class HospitalController {
     }
 
     @GetMapping("")
-    public String mainDisplay(){
-        return "redirect:/hospital/list";
-    }
-
-    @GetMapping("/list")
-    public String hospitalList(Model model, @PageableDefault(page=1, size=20)
-    @SortDefault.SortDefaults({@SortDefault(sort="healthcare_provider_count",
-            direction = Sort.Direction.DESC),
-            @SortDefault(sort = "patient_room_count",
-                    direction = Sort.Direction.DESC)}) Pageable pageable){
-        Page<Hospital> hospitalList = hospitalRepository.findAll(pageable);
-        // pageable을 받고 Page<>의 형태로 넣기
-
-        model.addAttribute("hospitals", hospitalList);
+    public String list(Model model, @PageableDefault(size=10) Pageable pageable) {
+        Page<Hospital> hospitals = hospitalRepository.findAll(pageable);
+        model.addAttribute("hospitals", hospitals);
+        model.addAttribute("checkNext", hospitals.hasNext());
+        model.addAttribute("checkPrevious", hospitals.hasPrevious());
         model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
         model.addAttribute("next", pageable.next().getPageNumber());
-        return "list";
+        return "hospitals/list";
     }
-
-//    @GetMapping("")
-//    public String list(Model model, Pageable pageable){
-//        Page<Hospital> hospitals = hospitalRepository.findAll(pageable);
-//        model.addAttribute("hospitals",hospitals);
-//        model.addAttribute("previous",pageable.previousOrFirst().getPageNumber());
-//        model.addAttribute("next",pageable.next().getPageNumber());
-//        return "hospitals/list";
-//    }
-
-//    @GetMapping("/search")
-//    public String search(String keyword, Model model){
-//        List<Hospital> searchList = hospitalRepository.findByHospitalNameContaining(keyword);
-//        model.addAttribute("searchList", searchList);
-//        return "search";
-//    }
-
+    @GetMapping("/{id}")
+    public String selectHospital(@PathVariable Integer id, Model model){
+        Optional<Hospital> hospital=hospitalRepository.findById(id);
+        if(!hospital.isEmpty()){
+            model.addAttribute("hospital", hospital.get());
+            return "hospitals/show";
+        }
+        return "error";
+    }
 }
