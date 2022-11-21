@@ -34,7 +34,7 @@ public class ArticleController {
     public String articles(ArticleDto articleDto){
         log.info(articleDto.getTitle());
         Article savedArticle = articleRepository.save(articleDto.toEntity());
-        return "redirect:/articles/"+savedArticle.getId();
+        return String.format("redirect:/articles/" + savedArticle.getId()); //
     }
 
     @GetMapping("/{id}")
@@ -48,8 +48,8 @@ public class ArticleController {
     }
     @GetMapping("/list")
     public String findAll(Model model){
-        List<Article> list = articleRepository.findAll();
-        model.addAttribute("articles", list);
+        List<Article> articles = articleRepository.findAll();
+        model.addAttribute("articles", articles);
         return "articles/list";
     }
     @GetMapping("/{id}/edit")
@@ -61,15 +61,16 @@ public class ArticleController {
         }
         return "articles/error";
     }
-    @PostMapping("/{id}/update")
-    public String updatePost(@PathVariable Long id, ArticleDto articleDto){
-        log.info("title : {} content : {}", articleDto.getTitle(), articleDto.getContent());
+    @PostMapping(value = "/{id}/update") // 수정한 게시글을 다시 DB에 저장(update)
+    public String updateArticle(@PathVariable Long id, ArticleDto articleDto, Model model) {
+        log.info("title:{} content:{}", articleDto.getTitle(), articleDto.getContent());
         Article article = articleRepository.save(articleDto.toEntity());
-        return "redirect:/articles/" + article.getId();
+        model.addAttribute("article", article);
+        return String.format("redirect:/articles/%d", article.getId());
     }
-    @GetMapping("/{id}/delete")
-    public String deletePost(@PathVariable Long id){
+    @GetMapping(value = "/{id}/delete") // 게시글 삭제
+    public String deleteArticle(@PathVariable Long id) {
         articleRepository.deleteById(id);
-        return "redirect:/articles/list";
+        return "redirect:/articles";
     }
 }

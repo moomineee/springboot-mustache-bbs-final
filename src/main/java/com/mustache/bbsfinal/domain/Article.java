@@ -29,6 +29,6 @@ public class Article {
     }
 
     public static ArticleDto of(Article article){
-        return new ArticleAddResponse(article.getId(), article.getTitle(), article.getContent());
+        return new ArticleDto(article.getId(), article.getTitle(), article.getContent());
     }
 }
